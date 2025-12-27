@@ -1,5 +1,9 @@
 # Changelog
 
+## 2025-12-27
+
+- Add cursor rules for autonomous AI agent workflows in `.cursor/rules/project-workflow/RULE.md`
+
 ## 2025-11-18
 
 - Work around aspect ratio bug in Safari
