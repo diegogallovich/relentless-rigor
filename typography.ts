@@ -84,7 +84,7 @@ export default {
           // Headings
           'h2, h3': {
             color: 'var(--tw-prose-headings)',
-            fontWeight: theme('fontWeight.semibold'),
+            fontWeight: theme('fontWeight.medium'),
           },
           h2: {
             fontSize: theme('fontSize.xl')[0],
