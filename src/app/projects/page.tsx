@@ -17,7 +17,7 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card as="li" className="border border-zinc-200 dark:border-zinc-700 p-6 rounded-lg transition-colors hover:border-zinc-400 dark:hover:border-zinc-500">
+    <Card as="li" className="border-r border-b border-zinc-200 dark:border-zinc-700 p-6 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
       <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
         <a 
           href={project.link.url}
@@ -71,7 +71,7 @@ export default function Projects() {
           </h2>
           <ul
             role="list"
-            className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-zinc-200 dark:border-zinc-700"
           >
             {founderProjects.map((project) => (
               <ProjectCard key={project.name} project={project} />
@@ -86,7 +86,7 @@ export default function Projects() {
           </h2>
           <ul
             role="list"
-            className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-zinc-200 dark:border-zinc-700"
           >
             {collaboratorProjects.map((project) => (
               <ProjectCard key={project.name} project={project} />
