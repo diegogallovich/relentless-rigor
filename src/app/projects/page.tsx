@@ -1,5 +1,4 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
@@ -18,19 +17,16 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Card as="li">
-      <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 shadow-zinc-800/5 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image
-          src={project.faviconUrl}
-          alt=""
-          width={32}
-          height={32}
-          className="h-8 w-8 rounded"
-          unoptimized
-        />
-      </div>
-      <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-        <Card.Link href={project.link.url}>{project.name}</Card.Link>
+    <Card as="li" className="border border-zinc-200 dark:border-zinc-700 p-6 rounded-lg transition-colors hover:border-zinc-400 dark:hover:border-zinc-500">
+      <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
+        <a 
+          href={project.link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative z-10 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+        >
+          {project.name}
+        </a>
       </h2>
       <Card.Description>{project.description}</Card.Description>
       <div className="mt-4 flex flex-wrap gap-2">
@@ -44,14 +40,14 @@ function ProjectCard({ project }: { project: Project }) {
         ))}
       </div>
       {project.industry && (
-        <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+        <p className="mt-3 text-xs text-zinc-600 dark:text-zinc-400">
           Industry: {project.industry}
         </p>
       )}
-      <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+      <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
         {project.dates}
       </p>
-      <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+      <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-500 dark:text-zinc-400">
         <LinkIcon className="h-6 w-6 flex-none" />
         <span className="ml-2">{project.link.text}</span>
       </p>
@@ -101,4 +97,3 @@ export default function Projects() {
     </Container>
   )
 }
-
