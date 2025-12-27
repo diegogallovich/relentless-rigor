@@ -19,7 +19,7 @@ export const metadata: Metadata = {
       'Diego Gallovich - Personal Website',
   },
   description:
-    'This site conglomerates Diego'''s projects, ideas, opinions, and recommendations.',
+    'This site conglomerates Diego\'s projects, ideas, opinions, and recommendations.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
