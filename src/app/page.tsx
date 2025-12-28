@@ -84,8 +84,8 @@ function SocialLink({
   icon: React.ComponentType<{ className?: string }>
 }) {
   return (
-    <Link className="group border border-zinc-300 dark:border-zinc-700 p-2 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors" {...props}>
-      <Icon className="h-5 w-5 fill-zinc-700 dark:fill-zinc-400" />
+    <Link className="group -m-1 p-1" {...props}>
+      <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </Link>
   )
 }
@@ -94,35 +94,28 @@ function Newsletter() {
   return (
     <form
       action="/thank-you"
-      className="border border-zinc-300 dark:border-zinc-700 p-8"
+      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
-      <div className="border-b border-zinc-300 dark:border-zinc-700 pb-4 mb-4">
-        <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 font-mono uppercase tracking-wider">
-          <MailIcon className="h-5 w-5 flex-none" />
-          <span className="ml-3">Stay up to date</span>
-        </h2>
-      </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300 mb-6">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <MailIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Stay up to date</span>
+      </h2>
+      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
-      <div className="border-t border-zinc-300 dark:border-zinc-700 pt-4">
-        <div className="space-y-3">
-          <div>
-            <label className="text-[10px] font-semibold text-zinc-500 dark:text-zinc-500 uppercase tracking-wider mb-2 block font-mono">
-              Email Address
-            </label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              aria-label="Email address"
-              required
-              className="w-full appearance-none border border-zinc-300 dark:border-zinc-700 bg-white px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-zinc-400 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:ring-zinc-600"
-            />
-          </div>
-          <Button type="submit" className="w-full">
-            Subscribe
-          </Button>
-        </div>
+      <div className="mt-6 flex items-center">
+        <span className="flex min-w-0 flex-auto p-px">
+          <input
+            type="email"
+            placeholder="Email address"
+            aria-label="Email address"
+            required
+            className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-white px-3 py-[calc(--spacing(2)-1px)] outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:bg-zinc-700/15 dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
+          />
+        </span>
+        <Button type="submit" className="ml-4 flex-none">
+          Join
+        </Button>
       </div>
     </form>
   )
@@ -146,22 +139,22 @@ function Role({ role }: { role: Role }) {
   let endDate = typeof role.end === 'string' ? role.end : role.end.dateTime
 
   return (
-    <li className="flex gap-4 py-3 first:pt-0">
-      <div className="relative flex h-10 w-10 flex-none items-center justify-center border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900">
+    <li className="flex gap-4">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
         <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
       </div>
-      <dl className="flex flex-auto flex-col gap-y-1">
+      <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
-        <dd className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 font-mono">
+        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
           {role.company}
         </dd>
         <dt className="sr-only">Role</dt>
-        <dd className="text-xs text-zinc-700 dark:text-zinc-400">
+        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
           {role.title}
         </dd>
         <dt className="sr-only">Date</dt>
         <dd
-          className="text-[10px] text-zinc-500 dark:text-zinc-500 font-mono uppercase tracking-wider"
+          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
           aria-label={`${startLabel} until ${endLabel}`}
         >
           <time dateTime={startDate}>{startLabel}</time>{' '}
@@ -209,24 +202,20 @@ function Resume() {
   ]
 
   return (
-    <div className="border border-zinc-300 dark:border-zinc-700 p-8">
-      <div className="border-b border-zinc-300 dark:border-zinc-700 pb-4 mb-6">
-        <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100 font-mono uppercase tracking-wider">
-          <BriefcaseIcon className="h-5 w-5 flex-none" />
-          <span className="ml-3">Work</span>
-        </h2>
-      </div>
-      <ol className="space-y-1 divide-y divide-zinc-200 dark:divide-zinc-800">
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <BriefcaseIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Work</span>
+      </h2>
+      <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <div className="border-t border-zinc-300 dark:border-zinc-700 mt-6 pt-6">
-        <Button href="#" variant="secondary" className="group w-full">
-          Download CV
-          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-        </Button>
-      </div>
+      <Button href="#" variant="secondary" className="group mt-6 w-full">
+        Download CV
+        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+      </Button>
     </div>
   )
 }
@@ -237,32 +226,25 @@ export default function Home() {
   return (
     <>
       <Container className="mt-9">
-        <div className="border border-zinc-300 dark:border-zinc-700 p-8">
-          <div className="border-b border-zinc-300 dark:border-zinc-700 pb-6 mb-6">
-            <h1 className="text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100 font-mono uppercase">
-              Diego Gallovich's Personal Website
-            </h1>
-          </div>
-          <p className="text-base text-zinc-700 dark:text-zinc-300 leading-relaxed mb-6">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+            Diego Gallovich's Personal Website
+          </h1>
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
             This site conglomerates Diego's projects, ideas, opinions, and recommendations.
           </p>
-          <div className="border-t border-zinc-300 dark:border-zinc-700 pt-6">
-            <div className="text-[10px] font-semibold text-zinc-500 dark:text-zinc-500 uppercase tracking-wider mb-3 font-mono">
-              Connect
-            </div>
-            <div className="flex gap-4">
-              <SocialLink href="https://x.com/diego_gallovich" aria-label="Follow on X" icon={XIcon} />
-              <SocialLink
-                href="https://github.com/diegogallovich"
-                aria-label="Follow on GitHub"
-                icon={GitHubIcon}
-              />
-              <SocialLink
-                href="https://linkedin.com/in/diegotech"
-                aria-label="Follow on LinkedIn"
-                icon={LinkedInIcon}
-              />
-            </div>
+          <div className="mt-6 flex gap-6">
+            <SocialLink href="https://x.com/diego_gallovich" aria-label="Follow on X" icon={XIcon} />
+            <SocialLink
+              href="https://github.com/diegogallovich"
+              aria-label="Follow on GitHub"
+              icon={GitHubIcon}
+            />
+            <SocialLink
+              href="https://linkedin.com/in/diegotech"
+              aria-label="Follow on LinkedIn"
+              icon={LinkedInIcon}
+            />
           </div>
         </div>
       </Container>

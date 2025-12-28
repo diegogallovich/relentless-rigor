@@ -12,17 +12,17 @@ export function Section({
   return (
     <section
       aria-labelledby={id}
-      className="border-t border-zinc-300 dark:border-zinc-700 pt-8 first:border-t-0 first:pt-0"
+      className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40"
     >
-      <div className="mb-6">
+      <div className="grid max-w-3xl grid-cols-1 items-baseline gap-y-8 md:grid-cols-4">
         <h2
           id={id}
-          className="text-[10px] font-semibold text-zinc-500 dark:text-zinc-500 uppercase tracking-wider font-mono"
+          className="text-sm font-semibold text-zinc-800 dark:text-zinc-100"
         >
           {title}
         </h2>
+        <div className="md:col-span-3">{children}</div>
       </div>
-      <div>{children}</div>
     </section>
   )
 }

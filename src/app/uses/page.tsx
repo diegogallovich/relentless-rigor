@@ -25,21 +25,11 @@ function Tool({
   children: React.ReactNode
 }) {
   return (
-    <Card as="li" className="border border-zinc-300 dark:border-zinc-700 p-6">
-      <div className="border-b border-zinc-300 dark:border-zinc-700 pb-3 mb-3">
-        <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 font-mono">
-          {href ? (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors">
-              {title}
-            </a>
-          ) : (
-            title
-          )}
-        </h3>
-      </div>
-      <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-        {children}
-      </p>
+    <Card as="li">
+      <Card.Title as="h3" href={href}>
+        {title}
+      </Card.Title>
+      <Card.Description>{children}</Card.Description>
     </Card>
   )
 }
