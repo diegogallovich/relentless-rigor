@@ -1,5 +1,12 @@
 # Changelog
 
+## 2025-12-28
+
+- Changed typographic hierarchy to use 1rem (16px) for all text elements
+- Updated heading font-weight from 500 to 600 (semibold) for better visual hierarchy
+- Updated Typography plugin configuration to match new hierarchy (typography.ts)
+- Added Tailwind typography utility class restrictions via `.cursor/rules/tailwind-typography/RULE.md`
+
 ## 2025-12-27
 
 - Add cursor rules for autonomous AI agent workflows in `.cursor/rules/project-workflow/RULE.md`
