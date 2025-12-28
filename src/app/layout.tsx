@@ -14,12 +14,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Spencer Sharp',
+    template: '%s - Diego Gallovich',
     default:
-      'Spencer Sharp - Software designer, founder, and amateur astronaut',
+      'Diego Gallovich - Personal Website',
   },
   description:
-    'I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms.',
+    'This site conglomerates Diego\'s projects, ideas, opinions, and recommendations.',
   alternates: {
     types: {
       'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,
