@@ -1,0 +1,60 @@
+{
+  "navigation": {
+    "articles": "Artículos",
+    "projects": "Proyectos",
+    "uses": "Herramientas"
+  },
+  "home": {
+    "title": "Sitio Web Personal de Diego Gallovich",
+    "description": "Este sitio reúne los proyectos, ideas, opiniones y recomendaciones de Diego.",
+    "followOn": "Seguir en",
+    "newsletter": {
+      "title": "Mantente al día",
+      "description": "Recibe notificaciones cuando publique algo nuevo, y cancela tu suscripción en cualquier momento.",
+      "emailPlaceholder": "Correo electrónico",
+      "emailLabel": "Correo electrónico",
+      "joinButton": "Unirse"
+    },
+    "work": {
+      "title": "Trabajo",
+      "downloadCV": "Descargar CV",
+      "company": "Empresa",
+      "role": "Rol",
+      "date": "Fecha",
+      "present": "Presente"
+    }
+  },
+  "articles": {
+    "title": "Artículos",
+    "description": "Artículos y pensamientos de Diego Gallovich.",
+    "intro": "Próximamente - artículos y pensamientos sobre tecnología, emprendimiento y más.",
+    "noArticles": "Aún no hay artículos. ¡Vuelve pronto!"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "description": "Proyectos en los que Diego ha trabajado como fundador y colaborador.",
+    "intro": "Proyectos en los que he trabajado como fundador y colaborador.",
+    "founderProjects": "Proyectos como Fundador",
+    "collaboratorProjects": "Proyectos como Colaborador",
+    "visitWebsite": "Visitar sitio web"
+  },
+  "uses": {
+    "title": "Herramientas",
+    "description": "Software que uso, gadgets que amo y otras cosas que recomiendo.",
+    "intro": "Me preguntan mucho sobre las cosas que uso para desarrollar software, mantenerme productivo, o comprar para engañarme pensando que estoy siendo productivo cuando en realidad solo estoy procrastinando. Aquí está una gran lista de todas mis cosas favoritas."
+  },
+  "thankYou": {
+    "title": "Gracias por suscribirte",
+    "description": "Gracias por suscribirte a mi boletín.",
+    "intro": "Te enviaré un correo cada vez que publique una nueva entrada de blog, lance un nuevo proyecto, o tenga algo interesante para compartir que creo que querrás saber. Puedes cancelar tu suscripción en cualquier momento, sin resentimientos."
+  },
+  "footer": {
+    "copyright": "Todos los derechos reservados."
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo sentimos, no pudimos encontrar la página que buscas.",
+    "backHome": "Volver al inicio"
+  }
+}
+

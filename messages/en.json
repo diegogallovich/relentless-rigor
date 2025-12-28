@@ -1,0 +1,60 @@
+{
+  "navigation": {
+    "articles": "Articles",
+    "projects": "Projects",
+    "uses": "Uses"
+  },
+  "home": {
+    "title": "Diego Gallovich's Personal Website",
+    "description": "This site conglomerates Diego's projects, ideas, opinions, and recommendations.",
+    "followOn": "Follow on",
+    "newsletter": {
+      "title": "Stay up to date",
+      "description": "Get notified when I publish something new, and unsubscribe at any time.",
+      "emailPlaceholder": "Email address",
+      "emailLabel": "Email address",
+      "joinButton": "Join"
+    },
+    "work": {
+      "title": "Work",
+      "downloadCV": "Download CV",
+      "company": "Company",
+      "role": "Role",
+      "date": "Date",
+      "present": "Present"
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "description": "Articles and thoughts from Diego Gallovich.",
+    "intro": "Coming soon - articles and thoughts on technology, entrepreneurship, and more.",
+    "noArticles": "No articles yet. Check back soon!"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Projects Diego has worked on as founder and collaborator.",
+    "intro": "Projects I've worked on as founder and collaborator.",
+    "founderProjects": "Founder Projects",
+    "collaboratorProjects": "Collaborator Projects",
+    "visitWebsite": "Visit website"
+  },
+  "uses": {
+    "title": "Uses",
+    "description": "Software I use, gadgets I love, and other things I recommend.",
+    "intro": "I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I'm being productive when I'm really just procrastinating. Here's a big list of all of my favorite stuff."
+  },
+  "thankYou": {
+    "title": "Thanks for subscribing",
+    "description": "Thank you for subscribing to my newsletter.",
+    "intro": "I'll send you an email any time I publish a new blog post, release a new project, or have anything interesting to share that I think you'd want to hear about. You can unsubscribe at any time, no hard feelings."
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "backHome": "Go back home"
+  }
+}
+
