@@ -13,7 +13,6 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
-import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 function HomeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -328,8 +327,7 @@ export function Header() {
                 <MobileNavigation className="pointer-events-auto md:hidden" />
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
-              <div className="flex justify-end gap-4 md:flex-1">
-                <LanguageSwitcher />
+              <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">
                   <ThemeToggle />
                 </div>
