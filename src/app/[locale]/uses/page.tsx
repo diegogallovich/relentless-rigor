@@ -1,3 +1,6 @@
+import { type Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
@@ -34,17 +37,20 @@ function Tool({
   )
 }
 
-export const metadata = {
-  title: 'Uses',
-  description: 'Software I use, gadgets I love, and other things I recommend.',
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('uses')
+
+  return {
+    title: t('title'),
+    description: t('description'),
+  }
 }
 
-export default function Uses() {
+export default async function Uses() {
+  const t = await getTranslations('uses')
+
   return (
-    <SimpleLayout
-      title="Software I use, gadgets I love, and other things I recommend."
-      intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
-    >
+    <SimpleLayout title={t('title')} intro={t('intro')}>
       <div className="space-y-20">
         <ToolsSection title="Workstation">
           <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
