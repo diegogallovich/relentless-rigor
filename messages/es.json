@@ -2,7 +2,10 @@
   "navigation": {
     "articles": "Artículos",
     "projects": "Proyectos",
-    "uses": "Herramientas"
+    "uses": "Herramientas",
+    "language": "Idioma",
+    "english": "Inglés",
+    "spanish": "Español"
   },
   "home": {
     "title": "Sitio Web Personal de Diego Gallovich",
@@ -57,4 +60,3 @@
     "backHome": "Volver al inicio"
   }
 }
-

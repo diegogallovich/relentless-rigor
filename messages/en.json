@@ -2,7 +2,10 @@
   "navigation": {
     "articles": "Articles",
     "projects": "Projects",
-    "uses": "Uses"
+    "uses": "Uses",
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish"
   },
   "home": {
     "title": "Diego Gallovich's Personal Website",
@@ -57,4 +60,3 @@
     "backHome": "Go back home"
   }
 }
-
