@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
 import {
   Popover,
   PopoverButton,
@@ -13,6 +14,7 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { LanguageDropdown } from '@/components/LanguageDropdown'
 
 function HomeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -119,6 +121,7 @@ function MobileNavigation(
 ) {
   const params = useParams()
   const locale = params.locale as string
+  const t = useTranslations('navigation')
 
   return (
     <Popover {...props}>
@@ -145,9 +148,9 @@ function MobileNavigation(
         </div>
         <nav className="mt-6">
           <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-            <MobileNavItem href="/articles" locale={locale}>Articles</MobileNavItem>
-            <MobileNavItem href="/projects" locale={locale}>Projects</MobileNavItem>
-            <MobileNavItem href="/uses" locale={locale}>Uses</MobileNavItem>
+            <MobileNavItem href="/articles" locale={locale}>{t('articles')}</MobileNavItem>
+            <MobileNavItem href="/projects" locale={locale}>{t('projects')}</MobileNavItem>
+            <MobileNavItem href="/uses" locale={locale}>{t('uses')}</MobileNavItem>
           </ul>
         </nav>
       </PopoverPanel>
@@ -191,13 +194,14 @@ function NavItem({
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
   const params = useParams()
   const locale = params.locale as string
+  const t = useTranslations('navigation')
 
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/articles" locale={locale}>Articles</NavItem>
-        <NavItem href="/projects" locale={locale}>Projects</NavItem>
-        <NavItem href="/uses" locale={locale}>Uses</NavItem>
+        <NavItem href="/articles" locale={locale}>{t('articles')}</NavItem>
+        <NavItem href="/projects" locale={locale}>{t('projects')}</NavItem>
+        <NavItem href="/uses" locale={locale}>{t('uses')}</NavItem>
       </ul>
     </nav>
   )
@@ -328,7 +332,8 @@ export function Header() {
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
-                <div className="pointer-events-auto">
+                <div className="pointer-events-auto flex items-center gap-3">
+                  <LanguageDropdown />
                   <ThemeToggle />
                 </div>
               </div>
