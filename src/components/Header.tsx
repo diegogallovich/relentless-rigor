@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import {
   Popover,
@@ -13,6 +13,7 @@ import {
 import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
+import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 
 function HomeIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -99,13 +100,15 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 function MobileNavItem({
   href,
   children,
+  locale,
 }: {
   href: string
   children: React.ReactNode
+  locale: string
 }) {
   return (
     <li>
-      <PopoverButton as={Link} href={href} className="block py-2">
+      <PopoverButton as={Link} href={`/${locale}${href}`} className="block py-2">
         {children}
       </PopoverButton>
     </li>
@@ -115,6 +118,9 @@ function MobileNavItem({
 function MobileNavigation(
   props: React.ComponentPropsWithoutRef<typeof Popover>,
 ) {
+  const params = useParams()
+  const locale = params.locale as string
+
   return (
     <Popover {...props}>
       <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
@@ -140,9 +146,9 @@ function MobileNavigation(
         </div>
         <nav className="mt-6">
           <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-            <MobileNavItem href="/articles">Articles</MobileNavItem>
-            <MobileNavItem href="/projects">Projects</MobileNavItem>
-            <MobileNavItem href="/uses">Uses</MobileNavItem>
+            <MobileNavItem href="/articles" locale={locale}>Articles</MobileNavItem>
+            <MobileNavItem href="/projects" locale={locale}>Projects</MobileNavItem>
+            <MobileNavItem href="/uses" locale={locale}>Uses</MobileNavItem>
           </ul>
         </nav>
       </PopoverPanel>
@@ -153,16 +159,20 @@ function MobileNavigation(
 function NavItem({
   href,
   children,
+  locale,
 }: {
   href: string
   children: React.ReactNode
+  locale: string
 }) {
-  let isActive = usePathname() === href
+  let pathname = usePathname()
+  let fullHref = `/${locale}${href}`
+  let isActive = pathname === fullHref
 
   return (
     <li>
       <Link
-        href={href}
+        href={fullHref}
         className={clsx(
           'relative block px-3 py-2 transition',
           isActive
@@ -180,12 +190,15 @@ function NavItem({
 }
 
 function DesktopNavigation(props: React.ComponentPropsWithoutRef<'nav'>) {
+  const params = useParams()
+  const locale = params.locale as string
+
   return (
     <nav {...props}>
       <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 ring-1 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
+        <NavItem href="/articles" locale={locale}>Articles</NavItem>
+        <NavItem href="/projects" locale={locale}>Projects</NavItem>
+        <NavItem href="/uses" locale={locale}>Uses</NavItem>
       </ul>
     </nav>
   )
@@ -220,9 +233,12 @@ function clamp(number: number, a: number, b: number) {
 }
 
 function HomeLink() {
+  const params = useParams()
+  const locale = params.locale as string
+
   return (
     <Link
-      href="/"
+      href={`/${locale}`}
       aria-label="Home"
       className="pointer-events-auto group"
     >
@@ -312,7 +328,8 @@ export function Header() {
                 <MobileNavigation className="pointer-events-auto md:hidden" />
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
-              <div className="flex justify-end md:flex-1">
+              <div className="flex justify-end gap-4 md:flex-1">
+                <LanguageSwitcher />
                 <div className="pointer-events-auto">
                   <ThemeToggle />
                 </div>
