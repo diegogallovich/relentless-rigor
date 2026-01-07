@@ -20,11 +20,16 @@ async function ProjectCard({ project }: { project: Project }) {
   const t = await getTranslations('projects')
 
   return (
-    <Card as="li" className="border-r border-b border-zinc-200 dark:border-zinc-700 p-6">
+    <Card as="li" className="group relative border-r border-b border-zinc-200 dark:border-zinc-700 p-6 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
+      <a 
+        href={project.link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute inset-0 z-10"
+        aria-label={`Visit ${project.name}`}
+      />
       <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
-        <Card.Link href={project.link.url} target="_blank" rel="noopener noreferrer">
-          {project.name}
-        </Card.Link>
+        <span className="relative z-20">{project.name}</span>
       </h2>
       <Card.Description>{t(`descriptions.${project.descriptionKey}`)}</Card.Description>
       <div className="mt-4 flex flex-wrap gap-2">
