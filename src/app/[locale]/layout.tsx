@@ -1,20 +1,12 @@
 import { type Metadata } from 'next'
-import { IBM_Plex_Mono } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
+import { LocaleUpdater } from '@/components/LocaleUpdater'
 import { locales } from '@/../../i18n'
-
-import '@/styles/tailwind.css'
-
-const ibmPlexMono = IBM_Plex_Mono({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-ibm-plex-mono',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -48,27 +40,20 @@ export default async function LocaleLayout({
     notFound()
   }
 
+  // Enable static rendering
+  setRequestLocale(locale)
+
   // Providing all messages to the client
   const messages = await getMessages()
 
   return (
-    <html
-      lang={locale}
-      className="h-full antialiased"
-      suppressHydrationWarning
-    >
-      <body
-        className={`flex h-full bg-zinc-50 dark:bg-black ${ibmPlexMono.variable}`}
-      >
-        <NextIntlClientProvider messages={messages}>
-          <Providers>
-            <div className="flex w-full">
-              <Layout>{children}</Layout>
-            </div>
-          </Providers>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <LocaleUpdater />
+      <Providers>
+        <div className="flex w-full">
+          <Layout>{children}</Layout>
+        </div>
+      </Providers>
+    </NextIntlClientProvider>
   )
 }
-

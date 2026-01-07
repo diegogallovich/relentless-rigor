@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
+import Link from 'next/link'
 
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
@@ -16,7 +17,7 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-async function ProjectCard({ project }: { project: Project }) {
+async function ProjectCard({ project, locale }: { project: Project, locale: string }) {
   const t = await getTranslations('projects')
 
   return (
@@ -34,12 +35,13 @@ async function ProjectCard({ project }: { project: Project }) {
       <Card.Description>{t(`descriptions.${project.descriptionKey}`)}</Card.Description>
       <div className="mt-4 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
-          <span
+          <Link
             key={tag}
-            className="inline-flex items-center rounded-full bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+            href={`/${locale}/category/${encodeURIComponent(tag.toLowerCase())}`}
+            className="relative z-20 inline-flex items-center rounded-full bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
           >
             {tag}
-          </span>
+          </Link>
         ))}
       </div>
       {project.industry && (
@@ -67,8 +69,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function Projects() {
+export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('projects')
+  const { locale } = await params
 
   return (
     <Container className="mt-16 sm:mt-32">
@@ -83,7 +86,7 @@ export default async function Projects() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-zinc-200 dark:border-zinc-700"
           >
             {founderProjects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.name} project={project} locale={locale} />
             ))}
           </ul>
         </section>
@@ -98,7 +101,7 @@ export default async function Projects() {
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-zinc-200 dark:border-zinc-700"
           >
             {collaboratorProjects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
+              <ProjectCard key={project.name} project={project} locale={locale} />
             ))}
           </ul>
         </section>

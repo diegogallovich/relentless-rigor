@@ -2,10 +2,12 @@
   "navigation": {
     "articles": "Articles",
     "projects": "Projects",
-    "uses": "Uses",
+    "recommendations": "Recommendations",
     "language": "Language",
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Spanish",
+    "menu": "Menu",
+    "navigationTitle": "Navigation"
   },
   "home": {
     "title": "Diego Gallovich's Personal Website",
@@ -31,7 +33,8 @@
     "title": "Articles",
     "description": "Articles and thoughts from Diego Gallovich.",
     "intro": "Coming soon - articles and thoughts on technology, entrepreneurship, and more.",
-    "noArticles": "No articles yet. Check back soon!"
+    "noArticles": "No articles yet. Check back soon!",
+    "readArticle": "Read article"
   },
   "projects": {
     "title": "Projects",
@@ -60,10 +63,34 @@
       "ropainvestments": "ROPA Investments is a privately backed investment group with capital exposure to 26+ countries."
     }
   },
-  "uses": {
-    "title": "Uses",
+  "recommendations": {
+    "title": "Recommendations",
     "description": "Software I use, gadgets I love, and other things I recommend.",
-    "intro": "I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I'm being productive when I'm really just procrastinating. Here's a big list of all of my favorite stuff."
+    "intro": "I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I'm being productive when I'm really just procrastinating. Here's a big list of all of my favorite stuff.",
+    "descriptions": {
+      "macbookPro": "I was using an Intel-based 16\" MacBook Pro prior to this and the difference is night and day. I've never heard the fans turn on a single time, even under the incredibly heavy loads I put it through with our various launch simulations.",
+      "proDisplayXDR": "The only display on the market if you want something HiDPI and bigger than 27\". When you're working at planetary scale, every pixel you can get counts.",
+      "ibmKeyboard": "They don't make keyboards the way they used to. I buy these any time I see them go up for sale and keep them in storage in case I need parts or need to retire my main.",
+      "magicTrackpad": "Something about all the gestures makes me feel like a wizard with special powers. I really like feeling like a wizard with special powers.",
+      "aeronChair": "If I'm going to slouch in the worst ergonomic position imaginable all day, I might as well do it in an expensive chair.",
+      "sublimeText": "I don't care if it's missing all of the fancy IDE features everyone else relies on, Sublime Text is still the best text editor ever made.",
+      "iterm2": "I'm honestly not even sure what features I get with this that aren't just part of the macOS Terminal but it's what I use.",
+      "tablePlus": "Great software for working with databases. Has saved me from building about a thousand admin interfaces for my various projects over the years.",
+      "figma": "We started using Figma as just a design tool but now it's become our virtual whiteboard for the entire company. Never would have expected the collaboration features to be the real hook.",
+      "alfred": "It's not the newest kid on the block but it's still the fastest. The Sublime Text of the application launcher world.",
+      "reflect": "Using a daily notes system instead of trying to keep things organized by topics has been super powerful for me. And with Reflect, it's still easy for me to keep all of that stuff discoverable by topic even though all of my writing happens in the daily note.",
+      "savvyCal": "Great tool for scheduling meetings while protecting my calendar and making sure I still have lots of time for deep work during the week.",
+      "focus": "Simple tool for blocking distracting websites when I need to just do the work and get some momentum going."
+    }
+  },
+  "category": {
+    "title": "Category",
+    "intro": "Explore articles, projects, and recommendations related to",
+    "articlesSection": "Articles",
+    "projectsSection": "Projects",
+    "recommendationsSection": "Recommendations",
+    "noContent": "No content found in this category.",
+    "readArticle": "Read article"
   },
   "thankYou": {
     "title": "Thanks for subscribing",
