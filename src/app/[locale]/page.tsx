@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -51,6 +54,8 @@ function SocialLink({
 }
 
 function Newsletter() {
+  const t = useTranslations('home.newsletter')
+
   return (
     <form
       action="/thank-you"
@@ -58,23 +63,23 @@ function Newsletter() {
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
         <MailIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Stay up to date</span>
+        <span className="ml-3">{t('title')}</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
+        {t('description')}
       </p>
       <div className="mt-6 flex items-center">
         <span className="flex min-w-0 flex-auto p-px">
           <input
             type="email"
-            placeholder="Email address"
-            aria-label="Email address"
+            placeholder={t('emailPlaceholder')}
+            aria-label={t('emailLabel')}
             required
             className="w-full appearance-none rounded-[calc(var(--radius-md)-1px)] bg-white px-3 py-[calc(--spacing(2)-1px)] outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:bg-zinc-700/15 dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
           />
         </span>
         <Button type="submit" className="ml-4 flex-none">
-          Join
+          {t('joinButton')}
         </Button>
       </div>
     </form>
@@ -85,29 +90,33 @@ function Newsletter() {
 
 
 
-
-
 export default function Home() {
+  const t = useTranslations('home')
+
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Diego Gallovich's Personal Website
+            {t('title')}
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            This site conglomerates Diego's projects, ideas, opinions, and recommendations.
+            {t('description')}
           </p>
           <div className="mt-6 flex gap-6">
-            <SocialLink href="https://x.com/diego_gallovich" aria-label="Follow on X" icon={XIcon} />
+            <SocialLink
+              href="https://x.com/diego_gallovich"
+              aria-label={`${t('followOn')} X`}
+              icon={XIcon}
+            />
             <SocialLink
               href="https://github.com/diegogallovich"
-              aria-label="Follow on GitHub"
+              aria-label={`${t('followOn')} GitHub`}
               icon={GitHubIcon}
             />
             <SocialLink
               href="https://linkedin.com/in/diegotech"
-              aria-label="Follow on LinkedIn"
+              aria-label={`${t('followOn')} LinkedIn`}
               icon={LinkedInIcon}
             />
           </div>

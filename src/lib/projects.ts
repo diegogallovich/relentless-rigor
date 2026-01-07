@@ -1,6 +1,6 @@
 export interface Project {
   name: string
-  description: string
+  descriptionKey: string // Translation key for the description
   link: {
     url: string
     text: string
@@ -14,7 +14,7 @@ export interface Project {
 export const founderProjects: Project[] = [
   {
     name: 'WebsiteFlows',
-    description: 'A Webflow Development as a Service agency designed for fast-paced startups and solopreneurs',
+    descriptionKey: 'websiteflows',
     link: {
       url: 'https://www.websiteflows.com?ref=relentlessrigor',
       text: 'websiteflows.com'
@@ -28,7 +28,7 @@ export const founderProjects: Project[] = [
 export const collaboratorProjects: Project[] = [
   {
     name: 'Acodei',
-    description: 'Automation Software that integrates Stripe with QuickBooks for seamless reconciliation of payouts and transactions.',
+    descriptionKey: 'acodei',
     link: {
       url: 'https://www.acodei.com?ref=relentlessrigor',
       text: 'acodei.com'
@@ -40,7 +40,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'alphaAI Capital',
-    description: 'The first and best predictive, AI managed roboadvisor for long term, leveraged ETF strategies.',
+    descriptionKey: 'alphaai',
     link: {
       url: 'https://www.alphaai.capital?ref=relentlessrigor',
       text: 'alphaai.capital'
@@ -52,7 +52,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Rain Intelligence',
-    description: 'The fastest AI-embedded business intelligence tool for top 500 firms in the United States.',
+    descriptionKey: 'rainintelligence',
     link: {
       url: 'https://www.rainintelligence.com?ref=relentlessrigor',
       text: 'rainintelligence.com'
@@ -64,7 +64,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Rev',
-    description: 'The #1 platform for legal transcription accuracy and secure discovery review for attorneys and investigators.',
+    descriptionKey: 'rev',
     link: {
       url: 'https://www.rev.com?ref=relentlessrigor',
       text: 'rev.com'
@@ -76,7 +76,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Rox',
-    description: 'Agentic AI for sales operations. Agents act on command - from users or other agents - across any tool or workflow.',
+    descriptionKey: 'rox',
     link: {
       url: 'https://www.rox.com?ref=relentlessrigor',
       text: 'rox.com'
@@ -88,7 +88,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Lawsuit Review',
-    description: 'Lawsuit Review gives you vital competitive intelligence data on current and emerging mass torts.',
+    descriptionKey: 'lawsuitreview',
     link: {
       url: 'https://www.lawsuitreview.com?ref=relentlessrigor',
       text: 'lawsuitreview.com'
@@ -100,7 +100,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'FemGevity Health',
-    description: 'Menopause symptom relief and longevity-focused healthcare solutions and treatment plans from the comfort of home.',
+    descriptionKey: 'femgevity',
     link: {
       url: 'https://www.femgevityhealth.com?ref=relentlessrigor',
       text: 'femgevityhealth.com'
@@ -112,7 +112,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Materna Healthcare',
-    description: 'NYC\'s new model for women\'s health. OB/GYN care for the in-between, when traditional offices can\'t see you.',
+    descriptionKey: 'materna',
     link: {
       url: 'https://www.maternahealthcare.com?ref=relentlessrigor.com',
       text: 'maternahealthcare.com'
@@ -124,7 +124,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Seminary Now',
-    description: 'Seminary Now\'s 80+ streaming courses and 10+ live online classes allow learners to access the best in biblical scholarship today.',
+    descriptionKey: 'seminarynow',
     link: {
       url: 'https://on.seminarynow.com?ref=relentlessrigor',
       text: 'seminarynow.com'
@@ -136,7 +136,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'PrePad',
-    description: 'Bring your well plan to life through a physics-based simulation of your designs, contracts, and constraints to drive better decisions.',
+    descriptionKey: 'prepad',
     link: {
       url: 'https://www.prepad.io?ref=relentlessrigor',
       text: 'prepad.io'
@@ -148,7 +148,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Wieser',
-    description: 'With 60 years of experience, WIESER specializes in ski slope construction, traditional and all weather snow snowmaking pipeworks, water basins, and any alpine earthmoving & civil works.',
+    descriptionKey: 'wieser',
     link: {
       url: 'https://www.wieser.it?ref=relentlessrigor',
       text: 'wieser.it'
@@ -160,7 +160,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Evolve Partners',
-    description: 'Large-scale power capacity that you can rely on. Midstream infrastructure and transmission-level power assets. Development, operations, sourcing, and leasing',
+    descriptionKey: 'evolvepartners',
     link: {
       url: 'https://www.evolve.partners?ref=relentlessrigor',
       text: 'evolve.partners'
@@ -172,7 +172,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'ColoColo Hostel',
-    description: 'The best of a hotel with the charm of a hostel, a new concept of accommodation in San Sebastián and Valencia: the Smart Hostel.',
+    descriptionKey: 'colocolo',
     link: {
       url: 'https://www.colocolo.com?ref=relentlessrigor',
       text: 'colocolo.com'
@@ -184,7 +184,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Alohause',
-    description: 'The best coliving in New York City.',
+    descriptionKey: 'alohause',
     link: {
       url: 'https://www.alohause.com?ref=relentlessrigor',
       text: 'alohause.com'
@@ -196,7 +196,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Dr. George Beyloune',
-    description: 'Reconstructive plastic surgeon based in Venezuela, specialized in mammoplasty, rhinoplasty, and lipoesculpture.',
+    descriptionKey: 'drgeorgebeyloune',
     link: {
       url: 'https://www.drgeorgebeyloune.com?ref=relentlessrigor',
       text: 'drgeorgebeyloune.com'
@@ -208,7 +208,7 @@ export const collaboratorProjects: Project[] = [
   },
   {
     name: 'Ropa Investments',
-    description: 'ROPA Investments is a privately backed investment group with capital exposure to 26+ countries.',
+    descriptionKey: 'ropainvestments',
     link: {
       url: 'https://www.ropa.gi?ref=relentlessrigor.com',
       text: 'ropa.gi'
@@ -219,4 +219,3 @@ export const collaboratorProjects: Project[] = [
     dates: '2025'
   }
 ]
-
