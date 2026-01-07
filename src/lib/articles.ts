@@ -1,4 +1,5 @@
 import glob from 'fast-glob'
+import path from 'path'
 
 interface Article {
   title: string
@@ -27,8 +28,11 @@ async function importArticle(
 }
 
 export async function getAllArticles() {
+  // Use absolute path to ensure it works in all environments (dev, build, production)
+  const articlesPath = path.join(process.cwd(), 'src/app/[locale]/articles')
+  
   let articleFilenames = await glob('*/page.mdx', {
-    cwd: './src/app/[locale]/articles',
+    cwd: articlesPath,
   })
 
   let articles = await Promise.all(articleFilenames.map(importArticle))
