@@ -69,9 +69,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function Projects({ params }: { params: { locale: string } }) {
+export default async function Projects({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('projects')
-  const { locale } = params
+  const { locale } = await params
 
   return (
     <Container className="mt-16 sm:mt-32">

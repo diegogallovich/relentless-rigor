@@ -65,6 +65,14 @@
     "description": "Software que uso, gadgets que amo y otras cosas que recomiendo.",
     "intro": "Me preguntan mucho sobre las cosas que uso para desarrollar software, mantenerme productivo, o comprar para engañarme pensando que estoy siendo productivo cuando en realidad solo estoy procrastinando. Aquí está una gran lista de todas mis cosas favoritas."
   },
+  "category": {
+    "title": "Categoría",
+    "intro": "Explora artículos, proyectos y recomendaciones relacionados con",
+    "articlesSection": "Artículos",
+    "projectsSection": "Proyectos",
+    "recommendationsSection": "Recomendaciones",
+    "noContent": "No se encontró contenido en esta categoría."
+  },
   "thankYou": {
     "title": "Gracias por suscribirte",
     "description": "Gracias por suscribirte a mi boletín.",

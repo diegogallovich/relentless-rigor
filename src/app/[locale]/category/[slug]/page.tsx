@@ -11,10 +11,10 @@ import { getRecommendationsByCategory, type Recommendation } from '@/lib/recomme
 import { formatDate } from '@/lib/formatDate'
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     locale: string
     slug: string
-  }
+  }>
 }
 
 function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
@@ -75,19 +75,20 @@ function RecommendationCard({ recommendation, locale }: { recommendation: Recomm
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
-  const { slug } = params
+  const { slug, locale } = await params
+  const t = await getTranslations('category')
   const categoryName = decodeURIComponent(slug)
   const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
 
   return {
-    title: `${formattedCategory} - Category`,
-    description: `Browse articles, projects, and recommendations in the ${formattedCategory} category.`,
+    title: `${formattedCategory} - ${t('title')}`,
+    description: `${t('intro')} ${formattedCategory}.`,
   }
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { locale, slug } = params
-  const t = await getTranslations('navigation')
+  const { locale, slug } = await params
+  const t = await getTranslations('category')
   
   // Decode and format the category name
   const categoryName = decodeURIComponent(slug)
@@ -105,15 +106,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   return (
     <SimpleLayout
-      title={`Category: ${formattedCategory}`}
-      intro={`Explore articles, projects, and recommendations related to ${formattedCategory}.`}
+      title={`${t('title')}: ${formattedCategory}`}
+      intro={`${t('intro')} ${formattedCategory}.`}
     >
       <div className="space-y-20">
         {/* Articles Section */}
         {articles.length > 0 && (
           <section>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
-              Articles
+              {t('articlesSection')}
             </h2>
             <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
               <div className="flex max-w-3xl flex-col space-y-16">
@@ -129,7 +130,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {projects.length > 0 && (
           <section>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
-              Projects
+              {t('projectsSection')}
             </h2>
             <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
@@ -143,7 +144,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {recommendations.length > 0 && (
           <section>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
-              Recommendations
+              {t('recommendationsSection')}
             </h2>
             <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
               {recommendations.map((recommendation) => (
@@ -156,4 +157,3 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     </SimpleLayout>
   )
 }
-

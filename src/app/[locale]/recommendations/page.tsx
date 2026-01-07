@@ -59,9 +59,9 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default async function Recommendations({ params }: { params: { locale: string } }) {
+export default async function Recommendations({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('recommendations')
-  const { locale } = params
+  const { locale } = await params
   const recommendations = getAllRecommendations()
 
   // Group recommendations by primary category (first category in the list)
@@ -88,4 +88,3 @@ export default async function Recommendations({ params }: { params: { locale: st
     </SimpleLayout>
   )
 }
-
