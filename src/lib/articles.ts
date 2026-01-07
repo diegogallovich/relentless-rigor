@@ -1,5 +1,8 @@
-import glob from 'fast-glob'
-import path from 'path'
+// Static imports for all articles - required for Vercel serverless deployment
+// When adding a new article, add an import and entry to articlesModules below
+import * as testSeoFundamentals from '../app/[locale]/articles/test-seo-fundamentals/page.mdx'
+import * as testTypescriptBestPractices from '../app/[locale]/articles/test-typescript-best-practices/page.mdx'
+import * as testWebflowAdvancedTechniques from '../app/[locale]/articles/test-webflow-advanced-techniques/page.mdx'
 
 interface Article {
   title: string
@@ -13,29 +16,19 @@ export interface ArticleWithSlug extends Article {
   slug: string
 }
 
-async function importArticle(
-  articleFilename: string,
-): Promise<ArticleWithSlug> {
-  let { article } = (await import(`../app/[locale]/articles/${articleFilename}`)) as {
-    default: React.ComponentType
-    article: Article
-  }
+// Registry of all articles with their slugs
+// Add new articles here after creating the MDX file
+const articlesModules = [
+  { slug: 'test-seo-fundamentals', module: testSeoFundamentals },
+  { slug: 'test-typescript-best-practices', module: testTypescriptBestPractices },
+  { slug: 'test-webflow-advanced-techniques', module: testWebflowAdvancedTechniques },
+]
 
-  return {
-    slug: articleFilename.replace(/(\/page)?\.mdx$/, ''),
-    ...article,
-  }
-}
-
-export async function getAllArticles() {
-  // Use absolute path to ensure it works in all environments (dev, build, production)
-  const articlesPath = path.join(process.cwd(), 'src/app/[locale]/articles')
-  
-  let articleFilenames = await glob('*/page.mdx', {
-    cwd: articlesPath,
-  })
-
-  let articles = await Promise.all(articleFilenames.map(importArticle))
+export async function getAllArticles(): Promise<ArticleWithSlug[]> {
+  const articles = articlesModules.map(({ slug, module }) => ({
+    slug,
+    ...(module as { article: Article }).article,
+  }))
 
   return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }
@@ -43,21 +36,23 @@ export async function getAllArticles() {
 export async function getAllCategories(): Promise<string[]> {
   const articles = await getAllArticles()
   const categories = new Set<string>()
-  
-  articles.forEach(article => {
+
+  articles.forEach((article) => {
     if (article.categories) {
-      article.categories.forEach(cat => categories.add(cat))
+      article.categories.forEach((cat) => categories.add(cat))
     }
   })
-  
+
   return Array.from(categories).sort()
 }
 
-export async function getArticlesByCategory(category: string): Promise<ArticleWithSlug[]> {
+export async function getArticlesByCategory(
+  category: string,
+): Promise<ArticleWithSlug[]> {
   const articles = await getAllArticles()
   const normalizedCategory = category.toLowerCase()
-  
-  return articles.filter(article => 
-    article.categories?.some(cat => cat.toLowerCase() === normalizedCategory)
+
+  return articles.filter((article) =>
+    article.categories?.some((cat) => cat.toLowerCase() === normalizedCategory),
   )
 }

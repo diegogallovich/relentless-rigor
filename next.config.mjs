@@ -9,7 +9,7 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   outputFileTracingIncludes: {
-    '/articles/*': ['./src/app/articles/**/*.mdx'],
+    '/articles/*': ['./src/app/[locale]/articles/**/*.mdx'],
   },
 }
 
