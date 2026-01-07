@@ -1,7 +1,8 @@
 'use client'
 
 import { useContext } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
+import Link from 'next/link'
 
 import { AppContext } from '@/app/providers'
 import { Container } from '@/components/Container'
@@ -30,6 +31,8 @@ export function ArticleLayout({
   children: React.ReactNode
 }) {
   let router = useRouter()
+  let params = useParams()
+  let locale = params.locale as string
   let { previousPathname } = useContext(AppContext)
 
   return (
@@ -58,6 +61,19 @@ export function ArticleLayout({
                 <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
                 <span className="ml-3">{formatDate(article.date)}</span>
               </time>
+              {article.categories && article.categories.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {article.categories.map((category) => (
+                    <Link
+                      key={category}
+                      href={`/${locale}/category/${encodeURIComponent(category.toLowerCase())}`}
+                      className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-800 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700"
+                    >
+                      {category}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </header>
             <Prose className="mt-8" data-mdx-content>
               {children}

@@ -2,7 +2,7 @@
   "navigation": {
     "articles": "Articles",
     "projects": "Projects",
-    "uses": "Uses",
+    "recommendations": "Recommendations",
     "language": "Language",
     "english": "English",
     "spanish": "Spanish"
@@ -60,8 +60,8 @@
       "ropainvestments": "ROPA Investments is a privately backed investment group with capital exposure to 26+ countries."
     }
   },
-  "uses": {
-    "title": "Uses",
+  "recommendations": {
+    "title": "Recommendations",
     "description": "Software I use, gadgets I love, and other things I recommend.",
     "intro": "I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I'm being productive when I'm really just procrastinating. Here's a big list of all of my favorite stuff."
   },

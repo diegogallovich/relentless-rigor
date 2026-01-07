@@ -219,3 +219,23 @@ export const collaboratorProjects: Project[] = [
     dates: '2025'
   }
 ]
+
+export function getProjectsByTag(tag: string): Project[] {
+  const normalizedTag = tag.toLowerCase()
+  const allProjects = [...founderProjects, ...collaboratorProjects]
+  
+  return allProjects.filter(project => 
+    project.tags.some(t => t.toLowerCase() === normalizedTag)
+  )
+}
+
+export function getAllProjectTags(): string[] {
+  const allProjects = [...founderProjects, ...collaboratorProjects]
+  const tags = new Set<string>()
+  
+  allProjects.forEach(project => {
+    project.tags.forEach(tag => tags.add(tag))
+  })
+  
+  return Array.from(tags).sort()
+}

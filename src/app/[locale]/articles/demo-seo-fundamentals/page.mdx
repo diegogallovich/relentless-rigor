@@ -1,0 +1,86 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Diego Gallovich',
+  date: '2024-03-10',
+  title: 'DEMO: SEO Fundamentals Every Developer Should Know',
+  description: 'Essential SEO strategies and technical implementations that will help your websites rank better in search engines.',
+  categories: ['SEO', 'Web Development', 'Marketing']
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+Search Engine Optimization (SEO) is crucial for any website's success. As developers, understanding SEO fundamentals helps us build sites that both users and search engines love.
+
+## Technical SEO Basics
+
+### Meta Tags Matter
+
+Always include proper meta tags in your HTML:
+
+```html
+<meta name="description" content="A compelling description that encourages clicks" />
+<meta property="og:title" content="Your Page Title" />
+<meta property="og:description" content="Description for social sharing" />
+<meta property="og:image" content="https://example.com/image.jpg" />
+```
+
+### Semantic HTML
+
+Use semantic HTML elements to help search engines understand your content structure:
+
+```html
+<article>
+  <header>
+    <h1>Main Article Title</h1>
+  </header>
+  <section>
+    <h2>Section Heading</h2>
+    <p>Content goes here...</p>
+  </section>
+</article>
+```
+
+## Performance and Core Web Vitals
+
+Google considers page speed as a ranking factor. Focus on:
+
+1. **Largest Contentful Paint (LCP)** - Optimize images and server response times
+2. **First Input Delay (FID)** - Minimize JavaScript execution time
+3. **Cumulative Layout Shift (CLS)** - Prevent unexpected layout shifts
+
+## Mobile-First Indexing
+
+Google predominantly uses mobile versions of content for indexing and ranking. Ensure:
+
+- Your site is fully responsive
+- Mobile and desktop content parity
+- Fast loading times on mobile networks
+- Touch-friendly navigation
+
+## Structured Data
+
+Help search engines understand your content with structured data:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your Article Title",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Gallovich"
+  },
+  "datePublished": "2024-03-10"
+}
+```
+
+## Conclusion
+
+Implementing these SEO fundamentals will give your websites a strong foundation for search engine visibility and organic traffic growth.
+

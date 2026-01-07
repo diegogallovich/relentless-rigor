@@ -2,7 +2,7 @@
   "navigation": {
     "articles": "Artículos",
     "projects": "Proyectos",
-    "uses": "Herramientas",
+    "recommendations": "Recomendaciones",
     "language": "Idioma",
     "english": "Inglés",
     "spanish": "Español"
@@ -60,8 +60,8 @@
       "ropainvestments": "ROPA Investments es un grupo de inversión de respaldo privado con exposición de capital en más de 26 países."
     }
   },
-  "uses": {
-    "title": "Herramientas",
+  "recommendations": {
+    "title": "Recomendaciones",
     "description": "Software que uso, gadgets que amo y otras cosas que recomiendo.",
     "intro": "Me preguntan mucho sobre las cosas que uso para desarrollar software, mantenerme productivo, o comprar para engañarme pensando que estoy siendo productivo cuando en realidad solo estoy procrastinando. Aquí está una gran lista de todas mis cosas favoritas."
   },

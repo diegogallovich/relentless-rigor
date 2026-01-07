@@ -1,0 +1,159 @@
+import { type Metadata } from 'next'
+import { getTranslations } from 'next-intl/server'
+import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+import { Card } from '@/components/Card'
+import { SimpleLayout } from '@/components/SimpleLayout'
+import { getArticlesByCategory, type ArticleWithSlug } from '@/lib/articles'
+import { getProjectsByTag, type Project } from '@/lib/projects'
+import { getRecommendationsByCategory, type Recommendation } from '@/lib/recommendations'
+import { formatDate } from '@/lib/formatDate'
+
+interface CategoryPageProps {
+  params: {
+    locale: string
+    slug: string
+  }
+}
+
+function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+      <path
+        d="M15.712 11.823a.75.75 0 1 0 1.06 1.06l-1.06-1.06Zm-4.95 1.768a.75.75 0 0 0 1.06-1.06l-1.06 1.06Zm-2.475-1.414a.75.75 0 1 0-1.06-1.06l1.06 1.06Zm4.95-1.768a.75.75 0 1 0-1.06 1.06l1.06-1.06Zm3.359.53-.884.884 1.06 1.06.885-.883-1.061-1.06Zm-4.95-2.12 1.414-1.415L12 6.344l-1.415 1.413 1.061 1.061Zm0 3.535a2.5 2.5 0 0 1 0-3.536l-1.06-1.06a4 4 0 0 0 0 5.656l1.06-1.06Zm4.95-4.95a2.5 2.5 0 0 1 0 3.535L17.656 12a4 4 0 0 0 0-5.657l-1.06 1.06Zm1.06-1.06a4 4 0 0 0-5.656 0l1.06 1.06a2.5 2.5 0 0 1 3.536 0l1.06-1.06Zm-7.07 7.07.176.177 1.06-1.06-.176-.177-1.06 1.06Zm-3.183-.353.884-.884-1.06-1.06-.884.883 1.06 1.06Zm4.95 2.121-1.414 1.414 1.06 1.06 1.415-1.413-1.06-1.061Zm0-3.536a2.5 2.5 0 0 1 0 3.536l1.06 1.06a4 4 0 0 0 0-5.656l-1.06 1.06Zm-4.95 4.95a2.5 2.5 0 0 1 0-3.535L6.344 12a4 4 0 0 0 0 5.656l1.06-1.06Zm-1.06 1.06a4 4 0 0 0 5.657 0l-1.061-1.06a2.5 2.5 0 0 1-3.535 0l-1.061 1.06Zm7.07-7.07-.176-.177-1.06 1.06.176.178 1.06-1.061Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
+function ArticleCard({ article, locale }: { article: ArticleWithSlug; locale: string }) {
+  return (
+    <Card as="li">
+      <Card.Title href={`/${locale}/articles/${article.slug}`}>
+        {article.title}
+      </Card.Title>
+      <Card.Eyebrow as="time" dateTime={article.date} decorate>
+        {formatDate(article.date)}
+      </Card.Eyebrow>
+      <Card.Description>{article.description}</Card.Description>
+      <Card.Cta>Read article</Card.Cta>
+    </Card>
+  )
+}
+
+function ProjectCard({ project, locale }: { project: Project; locale: string }) {
+  return (
+    <Card as="li">
+      <Card.Title as="h3">
+        <a href={project.link.url} target="_blank" rel="noopener noreferrer">
+          {project.name}
+        </a>
+      </Card.Title>
+      <Card.Description>
+        {project.industry && `${project.industry} • `}
+        {project.dates}
+      </Card.Description>
+      <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        <LinkIcon className="h-6 w-6 flex-none" />
+        <span className="ml-2">{project.link.text}</span>
+      </p>
+    </Card>
+  )
+}
+
+function RecommendationCard({ recommendation, locale }: { recommendation: Recommendation; locale: string }) {
+  return (
+    <Card as="li">
+      <Card.Title as="h3" href={recommendation.link}>
+        {recommendation.name}
+      </Card.Title>
+      <Card.Description>{recommendation.description}</Card.Description>
+    </Card>
+  )
+}
+
+export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const { slug } = params
+  const categoryName = decodeURIComponent(slug)
+  const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
+
+  return {
+    title: `${formattedCategory} - Category`,
+    description: `Browse articles, projects, and recommendations in the ${formattedCategory} category.`,
+  }
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { locale, slug } = params
+  const t = await getTranslations('navigation')
+  
+  // Decode and format the category name
+  const categoryName = decodeURIComponent(slug)
+  const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
+
+  // Fetch content by category
+  const articles = await getArticlesByCategory(categoryName)
+  const projects = getProjectsByTag(categoryName)
+  const recommendations = getRecommendationsByCategory(categoryName)
+
+  // If no content found in any category, show 404
+  if (articles.length === 0 && projects.length === 0 && recommendations.length === 0) {
+    notFound()
+  }
+
+  return (
+    <SimpleLayout
+      title={`Category: ${formattedCategory}`}
+      intro={`Explore articles, projects, and recommendations related to ${formattedCategory}.`}
+    >
+      <div className="space-y-20">
+        {/* Articles Section */}
+        {articles.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
+              Articles
+            </h2>
+            <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
+              <div className="flex max-w-3xl flex-col space-y-16">
+                {articles.map((article) => (
+                  <ArticleCard key={article.slug} article={article} locale={locale} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Projects Section */}
+        {projects.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
+              Projects
+            </h2>
+            <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project) => (
+                <ProjectCard key={project.name} project={project} locale={locale} />
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Recommendations Section */}
+        {recommendations.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 sm:text-3xl dark:text-zinc-100 mb-8">
+              Recommendations
+            </h2>
+            <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+              {recommendations.map((recommendation) => (
+                <RecommendationCard key={recommendation.name} recommendation={recommendation} locale={locale} />
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </SimpleLayout>
+  )
+}
+
