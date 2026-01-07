@@ -20,14 +20,20 @@ export interface ArticleWithSlug extends Article {
 // Add new articles here after creating the MDX file
 const articlesModules = [
   { slug: 'test-seo-fundamentals', module: testSeoFundamentals },
-  { slug: 'test-typescript-best-practices', module: testTypescriptBestPractices },
-  { slug: 'test-webflow-advanced-techniques', module: testWebflowAdvancedTechniques },
+  {
+    slug: 'test-typescript-best-practices',
+    module: testTypescriptBestPractices,
+  },
+  {
+    slug: 'test-webflow-advanced-techniques',
+    module: testWebflowAdvancedTechniques,
+  },
 ]
 
 export async function getAllArticles(): Promise<ArticleWithSlug[]> {
   const articles = articlesModules.map(({ slug, module }) => ({
     slug,
-    ...(module as { article: Article }).article,
+    ...(module as unknown as { article: Article }).article,
   }))
 
   return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
