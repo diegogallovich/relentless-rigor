@@ -1,11 +1,5 @@
 // Static imports for all articles - required for Vercel serverless deployment
 // When adding a new article, add imports for BOTH locale versions and entries to articlesModules below
-import * as testSeoFundamentalsEn from '../app/[locale]/articles/test-seo-fundamentals/page.en.mdx'
-import * as testSeoFundamentalsEs from '../app/[locale]/articles/test-seo-fundamentals/page.es.mdx'
-import * as testTypescriptBestPracticesEn from '../app/[locale]/articles/test-typescript-best-practices/page.en.mdx'
-import * as testTypescriptBestPracticesEs from '../app/[locale]/articles/test-typescript-best-practices/page.es.mdx'
-import * as testWebflowAdvancedTechniquesEn from '../app/[locale]/articles/test-webflow-advanced-techniques/page.en.mdx'
-import * as testWebflowAdvancedTechniquesEs from '../app/[locale]/articles/test-webflow-advanced-techniques/page.es.mdx'
 
 import { type Locale } from '@/../../i18n'
 
@@ -24,18 +18,11 @@ export interface ArticleWithSlug extends Article {
 // Registry of all articles with their slugs and locale-specific modules
 // Add new articles here after creating the MDX files for each locale
 const articlesModules: Record<string, Record<Locale, unknown>> = {
-  'test-seo-fundamentals': {
-    en: testSeoFundamentalsEn,
-    es: testSeoFundamentalsEs,
-  },
-  'test-typescript-best-practices': {
-    en: testTypescriptBestPracticesEn,
-    es: testTypescriptBestPracticesEs,
-  },
-  'test-webflow-advanced-techniques': {
-    en: testWebflowAdvancedTechniquesEn,
-    es: testWebflowAdvancedTechniquesEs,
-  },
+  // Example:
+  // 'my-article-slug': {
+  //   en: myArticleEn,
+  //   es: myArticleEs,
+  // },
 }
 
 export async function getAllArticles(locale: Locale = 'en'): Promise<ArticleWithSlug[]> {

@@ -5,27 +5,15 @@ import { getArticleBySlug, getArticleSlugs } from '@/lib/articles'
 import { locales, type Locale } from '@/../../i18n'
 
 // Static imports for MDX content - required for Vercel deployment
-import TestSeoFundamentalsEn from '../test-seo-fundamentals/page.en.mdx'
-import TestSeoFundamentalsEs from '../test-seo-fundamentals/page.es.mdx'
-import TestTypescriptBestPracticesEn from '../test-typescript-best-practices/page.en.mdx'
-import TestTypescriptBestPracticesEs from '../test-typescript-best-practices/page.es.mdx'
-import TestWebflowAdvancedTechniquesEn from '../test-webflow-advanced-techniques/page.en.mdx'
-import TestWebflowAdvancedTechniquesEs from '../test-webflow-advanced-techniques/page.es.mdx'
+// When adding a new article, import both locale versions here and add to articleComponents below
 
 // Map of slug -> locale -> MDX component
 const articleComponents: Record<string, Record<Locale, React.ComponentType>> = {
-  'test-seo-fundamentals': {
-    en: TestSeoFundamentalsEn,
-    es: TestSeoFundamentalsEs,
-  },
-  'test-typescript-best-practices': {
-    en: TestTypescriptBestPracticesEn,
-    es: TestTypescriptBestPracticesEs,
-  },
-  'test-webflow-advanced-techniques': {
-    en: TestWebflowAdvancedTechniquesEn,
-    es: TestWebflowAdvancedTechniquesEs,
-  },
+  // Example:
+  // 'my-article-slug': {
+  //   en: MyArticleEn,
+  //   es: MyArticleEs,
+  // },
 }
 
 interface ArticlePageProps {
@@ -78,4 +66,3 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return <ArticleContent />
 }
-
