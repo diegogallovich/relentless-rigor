@@ -39,7 +39,26 @@
     "intro": "Proyectos en los que he trabajado como fundador y colaborador.",
     "founderProjects": "Proyectos como Fundador",
     "collaboratorProjects": "Proyectos como Colaborador",
-    "visitWebsite": "Visitar sitio web"
+    "visitWebsite": "Visitar sitio web",
+    "descriptions": {
+      "websiteflows": "Una agencia de Desarrollo en Webflow como Servicio diseñada para startups de rápido crecimiento y emprendedores individuales",
+      "acodei": "Software de automatización que integra Stripe con QuickBooks para una conciliación fluida de pagos y transacciones.",
+      "alphaai": "El primer y mejor robo-asesor gestionado por IA predictiva para estrategias de ETF apalancadas a largo plazo.",
+      "rainintelligence": "La herramienta de inteligencia empresarial con IA incorporada más rápida para las 500 principales empresas de Estados Unidos.",
+      "rev": "La plataforma #1 para precisión en transcripción legal y revisión segura de evidencia para abogados e investigadores.",
+      "rox": "IA agéntica para operaciones de ventas. Los agentes actúan bajo comando - de usuarios u otros agentes - en cualquier herramienta o flujo de trabajo.",
+      "lawsuitreview": "Lawsuit Review te proporciona datos vitales de inteligencia competitiva sobre demandas masivas actuales y emergentes.",
+      "femgevity": "Alivio de síntomas de menopausia y soluciones de atención médica enfocadas en longevidad y planes de tratamiento desde la comodidad del hogar.",
+      "materna": "El nuevo modelo de salud femenina de NYC. Atención OB/GYN para los momentos intermedios, cuando las oficinas tradicionales no pueden atenderte.",
+      "seminarynow": "Los más de 80 cursos en streaming y más de 10 clases en vivo en línea de Seminary Now permiten a los estudiantes acceder a lo mejor en estudios bíblicos hoy.",
+      "prepad": "Da vida a tu plan de pozo a través de una simulación basada en física de tus diseños, contratos y restricciones para impulsar mejores decisiones.",
+      "wieser": "Con 60 años de experiencia, WIESER se especializa en construcción de pistas de esquí, tuberías para fabricación de nieve tradicional y para todo clima, cuencas de agua, y cualquier obra de movimiento de tierras y trabajos civiles alpinos.",
+      "evolvepartners": "Capacidad de energía a gran escala en la que puedes confiar. Infraestructura intermedia y activos de energía de nivel de transmisión. Desarrollo, operaciones, abastecimiento y arrendamiento",
+      "colocolo": "Lo mejor de un hotel con el encanto de un hostal, un nuevo concepto de alojamiento en San Sebastián y Valencia: el Smart Hostel.",
+      "alohause": "El mejor coliving en la ciudad de Nueva York.",
+      "drgeorgebeyloune": "Cirujano plástico reconstructivo con sede en Venezuela, especializado en mamoplastia, rinoplastia y lipoescultura.",
+      "ropainvestments": "ROPA Investments es un grupo de inversión de respaldo privado con exposición de capital en más de 26 países."
+    }
   },
   "uses": {
     "title": "Herramientas",

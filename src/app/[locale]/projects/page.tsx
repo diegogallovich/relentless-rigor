@@ -31,7 +31,7 @@ async function ProjectCard({ project }: { project: Project }) {
           {project.name}
         </a>
       </h2>
-      <Card.Description>{project.description}</Card.Description>
+      <Card.Description>{t(`descriptions.${project.descriptionKey}`)}</Card.Description>
       <div className="mt-4 flex flex-wrap gap-2">
         {project.tags.map((tag) => (
           <span
