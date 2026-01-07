@@ -5,6 +5,7 @@ import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import { type Locale } from '@/../../i18n'
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('articles')
@@ -18,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ArticlesIndex({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('articles')
   const { locale } = await params
-  const articles = await getAllArticles()
+  const articles = await getAllArticles(locale as Locale)
 
   return (
     <SimpleLayout title={t('title')} intro={t('intro')}>
@@ -38,7 +39,7 @@ export default async function ArticlesIndex({ params }: { params: Promise<{ loca
                   {formatDate(article.date)}
                 </Card.Eyebrow>
                 <Card.Description>{article.description}</Card.Description>
-                <Card.Cta>Read article</Card.Cta>
+                <Card.Cta>{t('readArticle')}</Card.Cta>
               </Card>
             ))
           )}

@@ -30,7 +30,8 @@ export async function GET(req: Request) {
     },
   })
 
-  let articles = await getAllArticles()
+  // Use English locale for RSS feed
+  let articles = await getAllArticles('en')
 
   for (let article of articles) {
     let url = String(new URL(`/articles/${article.slug}`, req.url))

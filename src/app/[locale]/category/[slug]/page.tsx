@@ -9,6 +9,7 @@ import { getArticlesByCategory, type ArticleWithSlug } from '@/lib/articles'
 import { getProjectsByTag, type Project } from '@/lib/projects'
 import { getRecommendationsByCategory, type Recommendation } from '@/lib/recommendations'
 import { formatDate } from '@/lib/formatDate'
+import { type Locale } from '@/../../i18n'
 
 interface CategoryPageProps {
   params: Promise<{
@@ -28,7 +29,15 @@ function LinkIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
-function ArticleCard({ article, locale }: { article: ArticleWithSlug; locale: string }) {
+function ArticleCard({
+  article,
+  locale,
+  readArticleText,
+}: {
+  article: ArticleWithSlug
+  locale: string
+  readArticleText: string
+}) {
   return (
     <Card as="li">
       <Card.Title href={`/${locale}/articles/${article.slug}`}>
@@ -38,7 +47,7 @@ function ArticleCard({ article, locale }: { article: ArticleWithSlug; locale: st
         {formatDate(article.date)}
       </Card.Eyebrow>
       <Card.Description>{article.description}</Card.Description>
-      <Card.Cta>Read article</Card.Cta>
+      <Card.Cta>{readArticleText}</Card.Cta>
     </Card>
   )
 }
@@ -63,13 +72,19 @@ function ProjectCard({ project, locale }: { project: Project; locale: string }) 
   )
 }
 
-function RecommendationCard({ recommendation, locale }: { recommendation: Recommendation; locale: string }) {
+function RecommendationCard({
+  recommendation,
+  description,
+}: {
+  recommendation: Recommendation
+  description: string
+}) {
   return (
     <Card as="li">
       <Card.Title as="h3" href={recommendation.link}>
         {recommendation.name}
       </Card.Title>
-      <Card.Description>{recommendation.description}</Card.Description>
+      <Card.Description>{description}</Card.Description>
     </Card>
   )
 }
@@ -89,13 +104,14 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { locale, slug } = await params
   const t = await getTranslations('category')
+  const tRecDescriptions = await getTranslations('recommendations.descriptions')
   
   // Decode and format the category name
   const categoryName = decodeURIComponent(slug)
   const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1)
 
   // Fetch content by category
-  const articles = await getArticlesByCategory(categoryName)
+  const articles = await getArticlesByCategory(categoryName, locale as Locale)
   const projects = getProjectsByTag(categoryName)
   const recommendations = getRecommendationsByCategory(categoryName)
 
@@ -119,7 +135,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
               <div className="flex max-w-3xl flex-col space-y-16">
                 {articles.map((article) => (
-                  <ArticleCard key={article.slug} article={article} locale={locale} />
+                  <ArticleCard
+                    key={article.slug}
+                    article={article}
+                    locale={locale}
+                    readArticleText={t('readArticle')}
+                  />
                 ))}
               </div>
             </div>
@@ -148,7 +169,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </h2>
             <ul role="list" className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
               {recommendations.map((recommendation) => (
-                <RecommendationCard key={recommendation.name} recommendation={recommendation} locale={locale} />
+                <RecommendationCard
+                  key={recommendation.name}
+                  recommendation={recommendation}
+                  description={tRecDescriptions(recommendation.descriptionKey)}
+                />
               ))}
             </ul>
           </section>

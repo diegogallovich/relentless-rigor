@@ -1,0 +1,86 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const article = {
+  author: 'Diego Gallovich',
+  date: '2024-03-10',
+  title: 'TEST: Fundamentos de SEO que Todo Desarrollador Debe Conocer',
+  description: 'Estrategias esenciales de SEO e implementaciones técnicas que ayudarán a tus sitios web a posicionarse mejor en los motores de búsqueda.',
+  categories: ['SEO', 'Web Development', 'Marketing']
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+La Optimización para Motores de Búsqueda (SEO) es crucial para el éxito de cualquier sitio web. Como desarrolladores, entender los fundamentos del SEO nos ayuda a construir sitios que tanto los usuarios como los motores de búsqueda aman.
+
+## Fundamentos Técnicos de SEO
+
+### Las Meta Etiquetas Importan
+
+Siempre incluye las meta etiquetas apropiadas en tu HTML:
+
+```html
+<meta name="description" content="Una descripción atractiva que incentive los clics" />
+<meta property="og:title" content="Título de tu Página" />
+<meta property="og:description" content="Descripción para compartir en redes sociales" />
+<meta property="og:image" content="https://example.com/image.jpg" />
+```
+
+### HTML Semántico
+
+Usa elementos HTML semánticos para ayudar a los motores de búsqueda a entender la estructura de tu contenido:
+
+```html
+<article>
+  <header>
+    <h1>Título Principal del Artículo</h1>
+  </header>
+  <section>
+    <h2>Encabezado de Sección</h2>
+    <p>El contenido va aquí...</p>
+  </section>
+</article>
+```
+
+## Rendimiento y Core Web Vitals
+
+Google considera la velocidad de la página como un factor de posicionamiento. Enfócate en:
+
+1. **Largest Contentful Paint (LCP)** - Optimiza imágenes y tiempos de respuesta del servidor
+2. **First Input Delay (FID)** - Minimiza el tiempo de ejecución de JavaScript
+3. **Cumulative Layout Shift (CLS)** - Previene cambios inesperados de diseño
+
+## Indexación Mobile-First
+
+Google usa predominantemente las versiones móviles del contenido para indexación y posicionamiento. Asegúrate de:
+
+- Tu sitio es completamente responsive
+- Paridad de contenido entre móvil y escritorio
+- Tiempos de carga rápidos en redes móviles
+- Navegación amigable al tacto
+
+## Datos Estructurados
+
+Ayuda a los motores de búsqueda a entender tu contenido con datos estructurados:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Título de tu Artículo",
+  "author": {
+    "@type": "Person",
+    "name": "Diego Gallovich"
+  },
+  "datePublished": "2024-03-10"
+}
+```
+
+## Conclusión
+
+Implementar estos fundamentos de SEO le dará a tus sitios web una base sólida para la visibilidad en motores de búsqueda y el crecimiento del tráfico orgánico. ¡Haz clic en las etiquetas de categoría para explorar más contenido relacionado!
+

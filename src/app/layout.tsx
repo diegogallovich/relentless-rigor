@@ -1,10 +1,25 @@
-// Root layout - Next.js requires this but locale-specific layout handles the actual rendering
-// This should never be used since middleware always redirects to /[locale] routes
+import { IBM_Plex_Mono } from 'next/font/google'
+
+import '@/styles/tailwind.css'
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-mono',
+})
+
+// Root layout - Required by Next.js to have html and body tags
+// The [locale] layout handles locale-specific rendering
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Return children directly - the [locale] layout will provide html/body tags
-  return children
+  return (
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+      <body className={`flex h-full bg-zinc-50 dark:bg-black ${ibmPlexMono.variable}`}>
+        {children}
+      </body>
+    </html>
+  )
 }

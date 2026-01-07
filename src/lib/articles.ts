@@ -1,8 +1,13 @@
 // Static imports for all articles - required for Vercel serverless deployment
-// When adding a new article, add an import and entry to articlesModules below
-import * as testSeoFundamentals from '../app/[locale]/articles/test-seo-fundamentals/page.mdx'
-import * as testTypescriptBestPractices from '../app/[locale]/articles/test-typescript-best-practices/page.mdx'
-import * as testWebflowAdvancedTechniques from '../app/[locale]/articles/test-webflow-advanced-techniques/page.mdx'
+// When adding a new article, add imports for BOTH locale versions and entries to articlesModules below
+import * as testSeoFundamentalsEn from '../app/[locale]/articles/test-seo-fundamentals/page.en.mdx'
+import * as testSeoFundamentalsEs from '../app/[locale]/articles/test-seo-fundamentals/page.es.mdx'
+import * as testTypescriptBestPracticesEn from '../app/[locale]/articles/test-typescript-best-practices/page.en.mdx'
+import * as testTypescriptBestPracticesEs from '../app/[locale]/articles/test-typescript-best-practices/page.es.mdx'
+import * as testWebflowAdvancedTechniquesEn from '../app/[locale]/articles/test-webflow-advanced-techniques/page.en.mdx'
+import * as testWebflowAdvancedTechniquesEs from '../app/[locale]/articles/test-webflow-advanced-techniques/page.es.mdx'
+
+import { type Locale } from '@/../../i18n'
 
 interface Article {
   title: string
@@ -16,31 +21,51 @@ export interface ArticleWithSlug extends Article {
   slug: string
 }
 
-// Registry of all articles with their slugs
-// Add new articles here after creating the MDX file
-const articlesModules = [
-  { slug: 'test-seo-fundamentals', module: testSeoFundamentals },
-  {
-    slug: 'test-typescript-best-practices',
-    module: testTypescriptBestPractices,
+// Registry of all articles with their slugs and locale-specific modules
+// Add new articles here after creating the MDX files for each locale
+const articlesModules: Record<string, Record<Locale, unknown>> = {
+  'test-seo-fundamentals': {
+    en: testSeoFundamentalsEn,
+    es: testSeoFundamentalsEs,
   },
-  {
-    slug: 'test-webflow-advanced-techniques',
-    module: testWebflowAdvancedTechniques,
+  'test-typescript-best-practices': {
+    en: testTypescriptBestPracticesEn,
+    es: testTypescriptBestPracticesEs,
   },
-]
+  'test-webflow-advanced-techniques': {
+    en: testWebflowAdvancedTechniquesEn,
+    es: testWebflowAdvancedTechniquesEs,
+  },
+}
 
-export async function getAllArticles(): Promise<ArticleWithSlug[]> {
-  const articles = articlesModules.map(({ slug, module }) => ({
-    slug,
-    ...(module as unknown as { article: Article }).article,
-  }))
+export async function getAllArticles(locale: Locale = 'en'): Promise<ArticleWithSlug[]> {
+  const articles = Object.entries(articlesModules).map(([slug, modules]) => {
+    const module = modules[locale] || modules['en'] // Fallback to English if locale not found
+    return {
+      slug,
+      ...(module as unknown as { article: Article }).article,
+    }
+  })
 
   return articles.sort((a, z) => +new Date(z.date) - +new Date(a.date))
 }
 
-export async function getAllCategories(): Promise<string[]> {
-  const articles = await getAllArticles()
+export async function getArticleBySlug(
+  slug: string,
+  locale: Locale = 'en',
+): Promise<ArticleWithSlug | null> {
+  const modules = articlesModules[slug]
+  if (!modules) return null
+
+  const module = modules[locale] || modules['en']
+  return {
+    slug,
+    ...(module as unknown as { article: Article }).article,
+  }
+}
+
+export async function getAllCategories(locale: Locale = 'en'): Promise<string[]> {
+  const articles = await getAllArticles(locale)
   const categories = new Set<string>()
 
   articles.forEach((article) => {
@@ -54,11 +79,17 @@ export async function getAllCategories(): Promise<string[]> {
 
 export async function getArticlesByCategory(
   category: string,
+  locale: Locale = 'en',
 ): Promise<ArticleWithSlug[]> {
-  const articles = await getAllArticles()
+  const articles = await getAllArticles(locale)
   const normalizedCategory = category.toLowerCase()
 
   return articles.filter((article) =>
     article.categories?.some((cat) => cat.toLowerCase() === normalizedCategory),
   )
+}
+
+// Helper for generating static params for all article/locale combinations
+export function getArticleSlugs(): string[] {
+  return Object.keys(articlesModules)
 }

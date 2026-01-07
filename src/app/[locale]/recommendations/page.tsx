@@ -23,16 +23,18 @@ function ToolsSection({
 function Tool({
   recommendation,
   locale,
+  description,
 }: {
   recommendation: Recommendation
   locale: string
+  description: string
 }) {
   return (
     <Card as="li">
       <Card.Title as="h3" href={recommendation.link}>
         {recommendation.name}
       </Card.Title>
-      <Card.Description>{recommendation.description}</Card.Description>
+      <Card.Description>{description}</Card.Description>
       {recommendation.categories && recommendation.categories.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {recommendation.categories.map((category) => (
@@ -61,6 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Recommendations({ params }: { params: Promise<{ locale: string }> }) {
   const t = await getTranslations('recommendations')
+  const tDescriptions = await getTranslations('recommendations.descriptions')
   const { locale } = await params
   const recommendations = getAllRecommendations()
 
@@ -80,7 +83,12 @@ export default async function Recommendations({ params }: { params: Promise<{ lo
         {Object.entries(groupedRecommendations).map(([category, recs]) => (
           <ToolsSection key={category} title={category}>
             {recs.map((rec) => (
-              <Tool key={rec.name} recommendation={rec} locale={locale} />
+              <Tool
+                key={rec.name}
+                recommendation={rec}
+                locale={locale}
+                description={tDescriptions(rec.descriptionKey)}
+              />
             ))}
           </ToolsSection>
         ))}
