@@ -20,7 +20,7 @@ async function ProjectCard({ project }: { project: Project }) {
   const t = await getTranslations('projects')
 
   return (
-    <Card as="li" className="border-r border-b border-zinc-200 dark:border-zinc-700 p-6 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
+    <Card as="li" className="border-r border-b border-zinc-200 dark:border-zinc-700 p-6">
       <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
         <Card.Link href={project.link.url} target="_blank" rel="noopener noreferrer">
           {project.name}
