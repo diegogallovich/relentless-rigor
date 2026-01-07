@@ -22,14 +22,9 @@ async function ProjectCard({ project }: { project: Project }) {
   return (
     <Card as="li" className="border-r border-b border-zinc-200 dark:border-zinc-700 p-6 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/50">
       <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
-        <a 
-          href={project.link.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative z-10 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
-        >
+        <Card.Link href={project.link.url} target="_blank" rel="noopener noreferrer">
           {project.name}
-        </a>
+        </Card.Link>
       </h2>
       <Card.Description>{t(`descriptions.${project.descriptionKey}`)}</Card.Description>
       <div className="mt-4 flex flex-wrap gap-2">
@@ -52,7 +47,7 @@ async function ProjectCard({ project }: { project: Project }) {
       </p>
       <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-500 dark:text-zinc-400">
         <LinkIcon className="h-6 w-6 flex-none" />
-        <span className="ml-2">{t('visitWebsite')}</span>
+        <span className="ml-2">{project.link.text}</span>
       </p>
     </Card>
   )
